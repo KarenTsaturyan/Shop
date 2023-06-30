@@ -1,0 +1,73 @@
+.cart-container-card {
+    width: 350px;
+    height: 425px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+}
+    .cart-container__profile {
+     background-color: #fcfcfc;
+     display: flex;
+     align-items: center;
+     padding: 0 10px 0 10px;
+    }
+    .cart-container-card img {
+      width: 350px;
+      height: 220px;
+      object-position: center;
+      object-fit: cover;
+     }
+     .cart-container__profile__text h5 {
+      color: #334454;
+      font-size: 1.2rem;
+     }
+     .cart-txtLink{
+        align-items: center;
+        letter-spacing: 2px;
+        text-decoration: none;
+        color: rgb(12, 12, 12);
+     }
+     .cart-btn{
+        background-color: transparent;
+        border: none;
+        border-radius: 20px;
+        padding: 5px;
+        cursor: pointer;
+        color: #374b5e;
+        font-weight: bold;
+        font-size: medium;
+        min-width: 30px;
+        margin: 0px 5px 0px 0px;
+     }
+     .cart-btn-del{
+        background-color: transparent;
+        border: none;
+        border-radius: 10px;
+        padding: 5px 10px 6px;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #374b5e;
+        font-weight: bold;
+        font-size: large;
+        min-width: 30px;
+        margin: auto;
+    }
+     .cart-btn:hover {
+        background-image: url('../../img/button-back2.png');
+        background-size: 100% 100%;
+        color: #011c3c;
+        animation: spring 300ms ease-out;
+        text-shadow: 0 -1px 0 #ef816c;
+        font-weight: bold;
+      }
+      .cart-btn.delete:hover {
+        background-image: url('../../img/button-back.png');
+        background-size: 100% 100%;
+        color: #ffadad;
+        animation: spring 300ms ease-out;
+        text-shadow: 0 -1px 0 #ef816c;
+        font-weight: bold;
+      }
+   .cart-container__profile__text .count{
+    color:#fc836b;
+   }

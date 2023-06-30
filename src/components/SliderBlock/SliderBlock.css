@@ -1,0 +1,116 @@
+.slider{
+    margin-bottom: 30px;
+    background-color: #6c84ff;
+    border-radius: 20px;
+}
+.slide-item{
+    height: 350px;
+    width: 150px;
+}
+.slider img {
+    width: 350px;
+    height: 250px;
+    object-position: center;
+    object-fit: cover;
+    float: left; 
+    border-radius: 15px;
+    margin: 0 5px 5px 5px;
+   }
+.slider h2{
+    text-align: center;
+}
+.slider h4{
+  text-align: center;
+  color: #27262c;
+}
+.slider p{
+    width: 60%;
+    text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 500px;
+    }
+.slider ul{
+    position: absolute;
+    bottom: 20px;
+}
+.slider ul :hover{
+    background-image: url('../../img/button-back2.png');
+    background-size: 100% 100%;
+    color: #27262c;
+    animation: spring 300ms ease-out;
+    text-shadow: 0 -1px 0 #ef816c;
+    font-weight: bold;
+    border-radius: 50%;
+}
+.slider .sl-btn{
+    background-color: transparent;
+    border: none;
+	  padding: 1rem 2rem 1.15rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #c6fd00;
+    font-weight: bold;
+    font-size: large;
+	min-width: 80px;
+	margin: auto ;
+}
+
+.slider .sl-btn:hover {
+    background-image: url('../../img/button-back2.png');
+    background-size: 100% 100%;
+    color: #27262c;
+    animation: spring 300ms ease-out;
+    text-shadow: 0 -1px 0 #ef816c;
+    font-weight: bold;
+  }
+  @keyframes spring {
+    15% {
+      -webkit-transform-origin: center center;
+      -webkit-transform: scale(1.2, 1.1);
+    }
+    40% {
+      -webkit-transform-origin: center center;
+      -webkit-transform: scale(0.95, 0.95);
+    }
+    75% {
+      -webkit-transform-origin: center center;
+      -webkit-transform: scale(1.05, 1);
+    }
+    100% {
+      -webkit-transform-origin: center center;
+      -webkit-transform: scale(1, 1);
+    }
+  }
+  /* .lds-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(1px);
+  }
+  .lds-circle > div {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    background: #fff;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  @keyframes lds-circle {
+    0%, 100% {
+      animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(1800deg);
+      animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    100% {
+      transform: rotateY(3600deg);
+    }
+  }
+   */
