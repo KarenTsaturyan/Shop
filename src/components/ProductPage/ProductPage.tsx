@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "./ProductPage.css"
 import Slider from 'react-slick';
-import axios from 'axios';
 import { findElem, selectProducts } from '../../store/slices/products/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, selectCart } from '../../store/slices/cart/cartSlice';
-const ProductPage = ({userName,}) => {
+import { addToCart } from '../../store/slices/cart/cartSlice';
+import { selectUsers } from '../../store/slices/users/usersSlice';
+const ProductPage = () => {
     const navigate = useNavigate()
     const {id} = useParams();
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
     const {currentProduct} = useSelector(selectProducts)
+    const {userName} = useSelector(selectUsers)
       useEffect(()=>{//componentDidMount
         dispatch(findElem(id))
       }, [])
   
-    let addTo=()=>{
+    const addTo=()=>{
         dispatch(addToCart(currentProduct))
           navigate('/cart');
     }
-    let settings = {
+    const settings = {
       infinite: true,
       speed: 700,
       slidesToShow: 1,
@@ -42,15 +43,14 @@ const ProductPage = ({userName,}) => {
                   <h2>{ currentProduct?.name}</h2>
                   <p>{ currentProduct?.description}</p>
                   <h5>${ currentProduct?.price}</h5>
-                  {/* {(userName)  */}
-                  {/* ?  */}
+                  {(userName) ?
                   <h5><button className='btn-product-page' onClick={()=>addTo()}>Add</button></h5>
-                  {/* :
+                  :
                   <>
                   <h5>Please <span style={{fontWeight:'bold',color:"#1ffa39"}}>Sign In</span> to buy something </h5>
                   <button className='btn-product-page' onClick={()=>navigate("/login")}>Login</button>
-                  </> */}
-                  {/* } */}
+                  </> 
+                  }
                   
               </div>
           </div>

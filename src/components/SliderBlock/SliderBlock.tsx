@@ -7,36 +7,42 @@ import './SliderBlock.css'
 import { Link } from 'react-router-dom';
 
 
-function shuffle(array) {
+export interface ISlide {
+  id: string;
+  title: string;
+  category: string;
+  price: number;
+  description: string;
+  images: string[];
+}
+
+function shuffle(array:ISlide[]) {
   for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array
 }
 
-const SliderBlock = ({slides, setSlides}) => {
-  let randNum1 = Math.floor((Math.random() * 25) + 1)
-  // let randNum2 = Math.floor(Math.random() * (7) + 4)
-  console.log(randNum1 );
+const SliderBlock = ({slides, setSlides}:{slides:ISlide[], setSlides:React.Dispatch<React.SetStateAction<ISlide[]>>}) => {
+  const randNum1 = Math.floor((Math.random() * 25) + 1)
   const [isLoading, setIsLoading] = useState(true)
     const [errMessage, setErrMessage] = useState("") 
   useEffect(() => {
     axios.get('https://dummyjson.com/products')///'https://dummyjson.com/products/'
       .then((response)=>{
-        const currentData = shuffle(response.data.products).slice(randNum1,randNum1+4).map(el=>({
+        const currentData: ISlide[] = shuffle(response.data.products)
+        .slice(randNum1, randNum1 + 4)
+        .map((el) => ({
           id: el.id.toString(),
-          name: el.title,
+          title: el.title,
           category: el.category,
           price: Math.round(el.price),
-          description:el.description,
-          imgUrl: el.images,
-        }))
-        setSlides([
-          ...currentData
-        ])
-        
-      })
+          description: el.description,
+          images: el.images,
+        }));
+      setSlides([...currentData]);
+    })
       .catch((err)=>{
         console.log(err.message);
         setErrMessage(err.message)
@@ -46,14 +52,14 @@ const SliderBlock = ({slides, setSlides}) => {
         setIsLoading(false)
       })
     }, [])
-    let settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        appendDots: (dots) => (
+        appendDots: (dots:React.ReactNode) => (
           <ul style={{ margin: "0px" }}> {dots} </ul>
       ),
       }
@@ -65,8 +71,8 @@ const SliderBlock = ({slides, setSlides}) => {
           <Slider {...settings}>
               {slides.map(el=>(
               <div key={el.id} className='slide-item'>
-                <h2>{el.name}</h2>
-                <img src={el.imgUrl[0]} alt="product"/>
+                <h2>{el.title}</h2>
+                <img src={el.images[0]} alt="product"/>
                 <p>{el.description}</p>
                 <Link to={`/products/${el.id}`}><button className='sl-btn'>BUY NOW <h4>${el.price}</h4></button></Link>
               </div>

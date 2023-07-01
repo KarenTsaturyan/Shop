@@ -1,24 +1,32 @@
-import React from 'react'
 import './CartItem.css'
 import { useDispatch } from 'react-redux'
 import { decrementCount, incrementCount, removeItem } from '../../store/slices/cart/cartSlice'
-const CartItem = ({cart,id,setCart, ...props}) => {
-   let dispatch = useDispatch()
+
+type TypeCartItemProps = {
+  id:string,
+  name:string,
+  price:number,
+  imgUrl:string[],
+  count:number
+}
+
+const CartItem = ({id, ...props}:TypeCartItemProps) => {
+   const dispatch = useDispatch()
   
-    let plus=()=>{
+    const plus=()=>{
       dispatch(incrementCount(id))
     }
     
-    let minus=()=>{
+    const minus=()=>{
       dispatch(decrementCount(id))
     }
-    let delItem = () =>{
+    const delItem = () =>{
       dispatch(removeItem(id))
       
     }
     return (
         <div className='cart-feed'>
-              <div className='cart-container-card' key={props.id}>
+              <div className='cart-container-card' key={id}>
                       <img
                   src={props.imgUrl[0]}
                   alt="people"
@@ -29,8 +37,8 @@ const CartItem = ({cart,id,setCart, ...props}) => {
                       <h5>${props.price}|<span className='count'>{props.count}</span>|</h5>       
               <button className='cart-btn' onClick={()=>plus()}>+1</button> 
               <button className='cart-btn' onClick={()=>minus()} disabled={(props.count<=1)? true : false}>-1</button>
-                  </div>
                   <button className='cart-btn delete' onClick={()=>delItem()}>Delete</button> 
+                  </div>
               </div>
               </div>
         </div>

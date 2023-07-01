@@ -1,9 +1,8 @@
-import React from 'react'
 import CartItem from '../CartItem/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeAll, selectCart } from '../../store/slices/cart/cartSlice'
 
-let h1Style={
+const h1Style:React.CSSProperties={
     fontFamily:'Arial, Helvetica, sans-serif',
     color: '#090',
     padding:'16px',
@@ -13,7 +12,7 @@ let h1Style={
     display:'block',
     margin:'16px',
   }
-  let btnStyle = {
+  const btnStyle:React.CSSProperties = {
     fontSize: '18px',
     fontFamily:'Arial, Helvetica, sans-serif',
     color: '#090',
@@ -24,10 +23,10 @@ let h1Style={
     display:'block',
     margin:'12px',
   }
-const Cart = ({setCart, userName}) => {
+const Cart = () => {
   const {cart} = useSelector(selectCart)
-  let dispatch = useDispatch()
-    let delAll = ()=>{
+  const dispatch = useDispatch()
+    const delAll = ()=>{
       dispatch(removeAll())
     }
   return (
@@ -39,7 +38,7 @@ const Cart = ({setCart, userName}) => {
         <div className='feed'>
             {(Array.isArray(cart) && cart.length)
             ?
-            cart.map(el=><CartItem key={el.id} cart={cart} setCart={setCart} id={el.id} name={el.name} price={el.price} weight={el.weight} imgUrl={el.imgUrl} count={el.count}/>)
+            cart.map(el=><CartItem key={el.id} id={el.id} name={el.name} price={el.price} imgUrl={el.imgUrl} count={el.count}/>)
             :
             <h2 style={h1Style}>Cart is empty, why you didn't fill it yet -_-</h2>
             }

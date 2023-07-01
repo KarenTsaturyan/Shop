@@ -1,5 +1,4 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from '../Card/Card'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,17 +6,18 @@ import { fetchProducts } from '../../store/slices/products/productsAPI'
 import { selectProducts, setSelectedCategory } from '../../store/slices/products/productSlice'
 import { fetchCategories } from '../../store/slices/categories/categoriesAPI'
 import { selectCategories } from '../../store/slices/categories/categoriesSlice'
+import { useAppDispatch } from '../../store/hooks'
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true)
 
-  let dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const {allProducts, selectedCategory} = useSelector(selectProducts)
   const {categories} = useSelector(selectCategories)
 
 useEffect(() => { 
   // console.log(categories);
-    if(!!categories){
+    if(categories){
       dispatch(fetchCategories())
     }
 }, [])

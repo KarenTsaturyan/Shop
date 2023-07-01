@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCategories } from "./categoriesAPI";
+import { RootState } from "../../store";
 
+interface ICategoriesState{
+    categories:string[]
+}
+
+const initialState:ICategoriesState = {
+    categories: []
+}
 
 const categoriesSlice = createSlice({
     name:'categories',
-    initialState: {
-        categories: [],
-    },
+    initialState,
     reducers:{
         // findElem(state, {payload}){
         //     // const idx = state.findIndex(product=> product.id === payload)
@@ -17,25 +23,25 @@ const categoriesSlice = createSlice({
         //     state.selectedCategory = payload
         // }
     },
-    extraReducers:{
-        [fetchCategories.pending]: ()=>{
+    extraReducers:(builder)=>{
+        builder.addCase(fetchCategories.pending, ()=>{
             console.log('champina');
-        },
-        [fetchCategories.fulfilled]:(state, {payload})=>{
+        }),
+        builder.addCase(fetchCategories.fulfilled,(state, {payload})=>{
             return {
                 ...state,
                 categories:[...payload]
             }
-        },
-        [fetchCategories.rejected]: (err)=>{
+        }),
+        builder.addCase(fetchCategories.rejected, (err)=>{
             console.log('error', err);
-        }
+        })
     }
 })
 
 
-export const selectCategories = state => state.categories
+export const selectCategories = (state:RootState) => state.categories
 
-export const {} = categoriesSlice.actions
+// export const {} = categoriesSlice.actions
 
 export const categoriesReducer = categoriesSlice.reducer

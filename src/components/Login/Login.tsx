@@ -3,9 +3,10 @@ import "./Login.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setCart } from "../../store/slices/cart/cartSlice";
 import { selectUsers, setUserName } from "../../store/slices/users/usersSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 const schema = Yup.object().shape({
   name:Yup.string().typeError("It should be a string").required("username is a required field"),
@@ -14,9 +15,9 @@ const schema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 
-function Login({setCartItems,cartItems}) {
-    let navigate = useNavigate()
-    let dispatch=useDispatch()
+function Login() {
+    const navigate = useNavigate()
+    const dispatch=useAppDispatch()
     const {userCart, usersData} = useSelector(selectUsers)
     // console.log(usersData);
     
@@ -34,12 +35,10 @@ function Login({setCartItems,cartItems}) {
                     console.log('undefined in Arr');
                   }else{
                     dispatch(setCart([//Creates array with the name of user;
-                    ...userCart.findLast(el=> el?.nr === values.name)?.user.map(el=>{///nor element mi angama linum avelacnel
-                      return {
-                        ...el,
-                        // price: el.price + el.price/el.count,
-                      }
-                    })
+                    ...(userCart.findLast((el) => el?.nr === values.name)?.user || []).map((el) => ({
+                      ...el,
+                      // price: el.price + el.price / el.count,
+                    })),
                   ]))
                   }
                   console.log(userCart.findLast(el=> el?.nr === values.name)?.user);///find 1 elem gtnum

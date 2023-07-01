@@ -1,12 +1,12 @@
-import axios from "axios";
 import "./Registration.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {  useSelector } from "react-redux";
 import { selectUsers, setUsersData } from "../../store/slices/users/usersSlice";
 import { fetchUsers } from "../../store/slices/users/usersAPI";
+import { useAppDispatch } from "../../store/hooks";
 
 const schema = Yup.object().shape({
     name:Yup.string().typeError("It should be a string").required("username is a required field"),
@@ -20,12 +20,12 @@ const schema = Yup.object().shape({
 });
 
 function Registration() {
-    let navigate = useNavigate()
-    let dispatch = useDispatch()
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const {usersData} = useSelector(selectUsers)
     console.log(usersData);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('')
     useEffect(() => {
       dispatch(fetchUsers())
     }, [])

@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './Navbar.css'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUsers, setUserCart, setUserName } from '../../store/slices/users/usersSlice'
-import { delCart, selectCart, setCart } from '../../store/slices/cart/cartSlice'
+import { delCart, selectCart } from '../../store/slices/cart/cartSlice'
 
 
 const Navbar = () => {
-    let navigate=useNavigate()
     const {userCart, userName} = useSelector(selectUsers)
     // console.log(userName);
     const {cart} = useSelector(selectCart)
-    let dispatch = useDispatch()
-    let LogOut = () =>{
+    const dispatch = useDispatch()
+    const LogOut = () =>{
       dispatch(setUserCart([
         ...userCart.filter((value, index, self) =>//saves the current cart in userCart
         index === self.findLastIndex((t) => (
@@ -34,7 +32,7 @@ const Navbar = () => {
     useEffect(() => {
         console.log('userCart`');
         console.log(userName);
-          console.log(userCart.findLast(el=>el)?.user)//.find
+          // console.log(userCart.findLast(el=>el)?.user)//.find
 
     }, [])
 

@@ -9,13 +9,13 @@ import ProductPage from './components/ProductPage/ProductPage';
 import Cart from './components/Cart/Cart';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from './store/slices/users/usersAPI';
 import { selectUsers } from './store/slices/users/usersSlice';
+import { useAppDispatch } from './store/hooks';
 
 function App() {
-  let dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const {usersData} = useSelector(selectUsers)
 
   

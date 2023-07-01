@@ -1,8 +1,10 @@
 import React from 'react'
 import { useNavigate} from 'react-router-dom'
 import './Card.css'
-
-const Card = ({price, id, name, description, imgUrl}) => {
+type TypeCardProps = {
+  price:number, id:string, name:string, description:string, imgUrl:string
+}
+const Card = ({price, id, name, description, imgUrl}:TypeCardProps) => {
  const navigate = useNavigate();
   return (
 
