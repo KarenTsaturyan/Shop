@@ -1,5 +1,5 @@
 # React Redux-Toolkit Typescript Shop
-# LIVE https://karentsaturyan.github.io/Shop/
+# [LIVE SITE](https://karentsaturyan.github.io/Shop/)
 ## Usage
 npm run dev
 ## Screenshots`
